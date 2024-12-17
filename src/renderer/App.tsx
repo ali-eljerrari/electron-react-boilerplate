@@ -1,12 +1,14 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
-import './App.css';
 
 function Hello() {
   return (
     <div>
       <div className="Hello">
-        <img width="200" alt="icon" src={icon} />
+        <img
+          width="200"
+          alt="icon"
+          src="https://pbs.twimg.com/profile_images/730268134460903424/8WOgriUU_400x400.jpg"
+        />
       </div>
       <h1>electron-react-boilerplate</h1>
       <div className="Hello">
@@ -22,18 +24,22 @@ function Hello() {
             Read our docs
           </button>
         </a>
-        <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
-          target="_blank"
-          rel="noreferrer"
+
+        <button
+          type="button"
+          onClick={() => {
+            // calling IPC exposed from preload script
+            // window.electron.ipcRenderer.once('ipc-example', (arg) => {
+            //   // eslint-disable-next-line no-console
+            //   console.log(arg);
+            // });
+
+            // window.electron.ipcRenderer.sendMessage('ipc-example', ['ping']);
+            window.electron.ipcRenderer.sendMessage('close', ['close']);
+          }}
         >
-          <button type="button">
-            <span role="img" aria-label="folded hands">
-              🙏
-            </span>
-            Donate
-          </button>
-        </a>
+          Send Message
+        </button>
       </div>
     </div>
   );
